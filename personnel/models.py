@@ -27,11 +27,11 @@ class Personnel(models.Model):
     title = models.CharField(max_length=1, choices=TITLE)
     salary = models.IntegerField()
     started = models.DateField()
-    department_id = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
+    department_id = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, related_name='personnel')
     user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)              
 
 
-    def __str__(self):
+    def __str__(self): 
         return f"{self.first_name} - {self.last_name}" 
