@@ -1,11 +1,10 @@
-from rest_framework import  IsAdminUser, SAFE_METHOD
-
+from rest_framework.permissions import IsAdminUser, SAFE_METHODS
 
 
 class IsAdminOrReadOnly(IsAdminUser):
-
+    
     def has_permission(self, request, view):
 
-        if request.method in SAFE_METHOD:
+        if request.method in SAFE_METHODS:
             return True
         return bool(request.user and request.user.is_staff)
